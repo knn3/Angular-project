@@ -7,12 +7,16 @@ import { Report } from '../report/report.service';
   styleUrls: ['./report-list.component.css']
 })
 export class ReportListComponent implements OnInit {
-  reports: Report[];
+  // reports: Report[];
 
   constructor() {
-    this.reports = []
+    // this.reports = []
    }
 
+  // onReportsAdd(r: Report): void {
+  //   this.reports.push(r);
+  // }
+  
   ngOnInit(): void {
   }
 
