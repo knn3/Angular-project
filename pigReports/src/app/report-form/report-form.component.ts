@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-report-form',
@@ -11,7 +11,16 @@ export class ReportFormComponent implements OnInit {
   form: FormGroup;
 
   constructor() { 
-    let formControl = {}
+    let formControl = {
+      name: new FormControl(null),
+      phoneNum: new FormControl(null),
+      Pid: new FormControl(null),
+      breed: new FormControl(null),
+      location: new FormControl(null),
+      longitude: new FormControl(null),
+      latitude: new FormControl(null),
+      extraNote: new FormControl(null)
+    }
     
     this.form = new FormGroup(formControl)
   }
@@ -20,6 +29,6 @@ export class ReportFormComponent implements OnInit {
   }
 
   onSubmit(values: any) {
-    console.log(values)
+    console.log(this.form.value)
   }
 }

@@ -7,6 +7,21 @@
 </form> -->
 
 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
-    <input name="name" type="text" placeholder="NAME" formControlName="name">
+    <input name="name" type="text" placeholder="NAME" formControlName="name"> <br>
 
+    <input name="phoneNum" type="number" placeholder="Phone Number" formControlName="phoneNum"> <br>
+
+    <input name="pid" type="text" placeholder="Pid" formControlName="Pid"> <br>
+
+    <input name="breed" type="text" placeholder="Breed" formControlName="breed"> <br>
+
+    <input name="location" type="text" placeholder="Location" formControlName="location"> <br>
+
+    <input name="longitude" type="number" placeholder="Longitude" formControlName="longitude"> <br>
+
+    <input name="latitude" type="number" placeholder="Latitude" formControlName="latitude"> <br>
+
+    <input name="extraNote" type="text" placeholder="Extra notes" formControlName="extraNote"> <br>
+    
+    <button>SAVE</button>
 </form>
