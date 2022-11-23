@@ -8,10 +8,13 @@
         <th scope="col"></th>
     </tr>
     <tr *ngFor="let report of reports">
-        <td>Metrotown</td>
+        <td>{{report.location}}</td>
         <td>{{report.name}}</td>
-        <td>{{report.time}}</td>
-        <td>RETRIEVED</td>
+        <td>{{report.date | date: 'yyyy-MM-dd'}} ({{report.time | date: 'h:mm'}})</td>
+        <td><span *ngIf="report.status; then retrieved else pickup"></span>
+            <ng-template #retrieved>RETRIEVED</ng-template>
+            <ng-template #pickup>READY TO PICKUP</ng-template>
+        </td>
         <td><button>More Info</button></td>
         <td>X</td>
     </tr>
