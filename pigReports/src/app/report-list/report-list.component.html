@@ -1,1 +1,6 @@
-<p>report-list works!</p>
+<app-report-display 
+    [reports]="reports"
+    (delete) = "onReportDelete($event)"
+></app-report-display>
+
+<a href="/add">ADD</a>

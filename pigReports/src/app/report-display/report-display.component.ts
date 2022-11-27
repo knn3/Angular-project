@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-report-display',
@@ -8,6 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ReportDisplayComponent implements OnInit {
   
   @Input() reports: any;
+  @Output() delete = new EventEmitter()
+
 
   // reports: any[];
 
@@ -33,4 +35,9 @@ export class ReportDisplayComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onDelete(evt:any,ind:any){
+    console.log(ind)
+    evt["ind"] = ind
+    this.delete.emit(evt)
+  }
 }

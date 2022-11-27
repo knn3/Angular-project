@@ -39,6 +39,6 @@ export class Report {
 
   // addNewReport(name: string, phoneNum: number, breed: string, Pid: number, location: string, longitude: number, latitude: number, extraNotes: string, date: number, time: number, status: boolean) {
     
-  // }
   
+
 }
