@@ -9,6 +9,7 @@ import { ReportDisplayComponent } from './report-display/report-display.componen
 import { ReactiveFormsModule } from '@angular/forms';
 import { RoutingModule } from './routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ReportInfoComponent } from './report-info/report-info.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReportListComponent,
     ReportFormComponent,
     ReportDisplayComponent,
+    ReportInfoComponent,
   ],
   imports: [
     BrowserModule,

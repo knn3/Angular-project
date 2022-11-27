@@ -15,10 +15,12 @@
             <ng-template #retrieved>RETRIEVED</ng-template>
             <ng-template #pickup>READY TO PICKUP</ng-template>
         </td>
-        <td><button>More Info</button></td>
+        <td><button
+            (click)="onMoreInfo($event,report)"
+        >More Info</button></td>
         <td><button 
             id="delete"
             (click)="onDelete($event,report)"
-            >X</button></td>
+        >X</button></td>
     </tr>
 </table>

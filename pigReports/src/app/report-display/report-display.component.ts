@@ -1,4 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-report-display',
@@ -13,7 +15,7 @@ export class ReportDisplayComponent implements OnInit {
 
   // reports: any[];
 
-  constructor() {
+  constructor(private router: Router) {
     // this.reports = [{
     //   name: 'hello',
     //   time: new Date().getDate()
@@ -39,5 +41,9 @@ export class ReportDisplayComponent implements OnInit {
     console.log(ind)
     evt["ind"] = ind
     this.delete.emit(evt)
+  }
+
+  onMoreInfo(evt: any, report: any) {
+    this.router.navigate(["/info", report.id])
   }
 }
