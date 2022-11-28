@@ -1,2 +1,37 @@
-<p>person-edit-form works!</p>
-Let's populate {{id}}'s data
+<table>
+    <tr>
+        <td>Name: </td>
+        <td>{{report.name}}</td>
+    </tr>
+    <tr>
+        <td>Phone number: </td>
+        <td>{{report.phoneNum}}</td>
+    </tr>
+    <tr>
+        <td>Pig's breed: </td>
+        <td>{{report.breed}}</td>
+    </tr>
+    <tr>
+        <td>Pig's id: </td>
+        <td>{{report.Pid}}</td>
+    </tr>
+    <tr>
+        <td>Location: </td>
+        <td>{{report.location}}</td>
+    </tr>
+    <tr>
+        <td>Extra notes: </td>
+        <td>{{report.extraNotes}}</td>
+    </tr>
+    <tr>
+        <td>Date and Time: </td>
+        <td>{{report.date | date: 'yyyy-MM-dd (h:mm a)'}}</td>
+    </tr>
+    <tr>
+        <td>Status: </td>
+        <td><span *ngIf="report.status; then retrieved else pickup"></span>
+            <ng-template #retrieved>RETRIEVED</ng-template>
+            <ng-template #pickup>READY TO PICKUP</ng-template>
+        </td>
+    </tr>
+</table>

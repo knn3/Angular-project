@@ -10,7 +10,7 @@
     <tr *ngFor="let report of reports">
         <td>{{report.location}}</td>
         <td>{{report.name}}</td>
-        <td>{{report.date | date: 'yyyy-MM-dd'}} ({{report.time | date: 'h:mm'}})</td>
+        <td>{{report.date | date: 'yyyy-MM-dd'}} ({{report.time | date: 'h:mm a'}})</td>
         <td><span *ngIf="report.status; then retrieved else pickup"></span>
             <ng-template #retrieved>RETRIEVED</ng-template>
             <ng-template #pickup>READY TO PICKUP</ng-template>
