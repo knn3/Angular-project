@@ -11,6 +11,7 @@ export class ReportDisplayComponent implements OnInit {
   
   @Input() reports: any;
   @Output() delete = new EventEmitter()
+  @Output() update = new EventEmitter()
 
 
   // reports: any[];
@@ -45,5 +46,49 @@ export class ReportDisplayComponent implements OnInit {
 
   onMoreInfo(evt: any, report: any) {
     this.router.navigate(["/info", report.id])
+  }
+
+  onChangeStatus(evt: any, ind: any) {
+    evt["ind"] = ind
+    this.update.emit(evt)
+  }
+
+  onLocationSort(evt: any) {
+    this.reports.sort(this.compareLoc)
+  }
+  onNameSort(evt: any) {
+    this.reports.sort(this.compareName)
+  }
+  onTimeSort(evt: any) {
+    this.reports.sort(this.compareTime)
+  }
+
+  compareLoc(a: any, b: any) {
+    if ( a.location < b.location ){
+      return -1;
+    }
+    if ( a.location > b.location ){
+      return 1;
+    }
+    return 0;
+  }
+  compareName(a: any, b: any) {
+    if ( a.name < b.name ){
+      return -1;
+    }
+    if ( a.name > b.name ){
+      return 1;
+    }
+    return 0;
+  }
+
+  compareTime(a: any, b: any) {
+    if ( a.date < b.date ){
+      return -1;
+    }
+    if ( a.date > b.date ){
+      return 1;
+    }
+    return 0;
   }
 }

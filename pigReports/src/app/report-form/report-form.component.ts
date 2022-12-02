@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -9,20 +9,37 @@ import { Router } from '@angular/router';
   styleUrls: ['./report-form.component.css']
 })
 export class ReportFormComponent implements OnInit {
-  
+  locationName = false
+  check = false
   form: FormGroup;
   allReports: any[];
-
+  locations: string[];
 
   constructor(private http: HttpClient, private router: Router) { 
     let formControl = {
-      name: new FormControl(null),
-      phoneNum: new FormControl(null),
-      Pid: new FormControl(null),
-      breed: new FormControl(null),
-      location: new FormControl(null),
-      longitude: new FormControl(null),
-      latitude: new FormControl(null),
+      name: new FormControl(null, [
+        Validators.required
+      ]),
+      phoneNum: new FormControl(null, [
+        Validators.required,
+        Validators.pattern("^[0-9]{1,10}$")
+      ]),
+      Pid:new FormControl(null, [
+        Validators.required,
+        Validators.pattern("^[0-9]*$")
+      ]),
+      breed:new FormControl(null, [
+        Validators.required
+      ]),
+      location: new FormControl(null, [
+        Validators.required
+      ]),
+      longitude: new FormControl(null, [
+        Validators.required
+      ]),
+      latitude: new FormControl(null, [
+        Validators.required
+      ]),
       extraNote: new FormControl(null),
       date: new FormControl(new Date().getTime()),
       time: new FormControl(new Date().getTime()),
@@ -30,6 +47,7 @@ export class ReportFormComponent implements OnInit {
       id: new FormControl(null)
     }
     this.allReports = [];
+    this.locations = []
     this.form = new FormGroup(formControl)
   }
 
@@ -39,30 +57,58 @@ export class ReportFormComponent implements OnInit {
         this.allReports = []
         for (let i = 0; i < data.length; i++){
           this.allReports.push(data[i].data)
+          if (this.locations.indexOf(data[i].data.location) === -1) {
+            this.locations.push(data[i].data.location)
+          }
         }
     })
   }
 
   onSubmit(values: any) {
-    console.log(this.form.value)
-    this.form.value.date = new Date().getTime();
-    this.form.value.time = new Date().getTime();
-    if (!this.allReports.length) {
-      this.form.value.id = 0
+    if (!this.form.valid) {
+      alert("Please make sure to enter all the information!")
+      this.check = true
     }
     else {
-      this.form.value.id = this.allReports[this.allReports.length - 1].id + 1;
+      this.form.value.date = new Date().getTime();
+      this.form.value.time = new Date().getTime();
+      if (!this.allReports.length) {
+        this.form.value.id = 0
+      }
+      else {
+        this.form.value.id = this.allReports[this.allReports.length - 1].id + 1;
+      }
+
+      this.http.post('https://272.selfip.net/apps/DHt1XR53QT/collections/reports/documents/',
+        { "key": `${this.form.value.id}`, "data": this.form.value }
+      ).subscribe((data: any) => {
+        this.ngOnInit()
+        this.router.navigate(["/"])
+
+      })
     }
-
-    this.http.post('https://272.selfip.net/apps/DHt1XR53QT/collections/reports/documents/',
-      { "key": `${this.form.value.id}`, "data": this.form.value }
-    ).subscribe((data: any) => {
-      console.log("post: ")
-      console.log(data)
-      this.ngOnInit()
-      this.router.navigate(["/"])
-
-    })
-    
   }
+
+  mySelectHandler(evt: any) {
+    if (this.form.value.location == "Enter a location:") {
+      this.locationName = true
+    }
+    else 
+      this.locationName = false
+  }
+
+
+  get name() { return this.form.get('name'); }
+  get Pid() { return this.form.get('Pid'); }
+  get phoneNum() { return this.form.get('phoneNum'); }
+  get breed() { return this.form.get('breed'); }
+  get location() { return this.form.get('location'); }
+  get longitude() { return this.form.get('longitude'); }
+  get latitude() { return this.form.get('latitude'); }
+  get extraNote() { return this.form.get('extraNote'); }
+
+
+
 }
+
+

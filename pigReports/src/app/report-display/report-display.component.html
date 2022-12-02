@@ -1,8 +1,8 @@
 <table>
     <tr>
-        <th scope="col">Location</th>
-        <th scope="col">Reported By</th>
-        <th scope="col">Time Reported</th>
+        <th scope="col"><a href="#" (click)="onLocationSort($event)">Location</a></th>
+        <th scope="col"><a href="#" (click)="onNameSort($event)">Reported By</a></th>
+        <th scope="col"><a href="#" (click)="onTimeSort($event)">Time Reported</a></th>
         <th scope="col">Status</th>
         <th scope="col"></th>
         <th scope="col"></th>
@@ -17,10 +17,15 @@
         </td>
         <td><button
             (click)="onMoreInfo($event,report)"
+            class="btn btn-info"
         >More Info</button></td>
+        <td>
+            <button (click)="onChangeStatus($event,report)" class="btn btn-success">Change Status</button>
+        </td>
         <td><button 
             id="delete"
             (click)="onDelete($event,report)"
+            class="btn btn-danger"
         >X</button></td>
     </tr>
 </table>

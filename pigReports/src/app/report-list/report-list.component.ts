@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Report } from '../report/report.service';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-report-list',
@@ -10,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class ReportListComponent implements OnInit {
   reports: any[];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.reports = []
    }
   
@@ -27,11 +28,47 @@ export class ReportListComponent implements OnInit {
   }
 
   onReportDelete(evt: any) {
-    console.log(evt["ind"].id)
-    this.http.delete<Object>(`https://272.selfip.net/apps/DHt1XR53QT/collections/reports/documents/${evt["ind"].id}/`)
+    let password = prompt("Please enter the password:", "");
+    this.http.get<Object>('https://api.hashify.net/hash/md5/hex?value=' + password)
       .subscribe((data: any) => {
-        this.ngOnInit();
-        console.log("delete successfull")
+        if (data.Digest != "84892b91ef3bf9d216bbc6e88d74a77c") {
+          alert("Wrong password!")
+        }
+        else {
+            this.http.delete<Object>(`https://272.selfip.net/apps/DHt1XR53QT/collections/reports/documents/${evt["ind"].id}/`)
+            .subscribe((data: any) => {
+              this.ngOnInit();
+              console.log("delete successfull")
+          })
+        }
     })
+  }
+
+  onReportUpdate(evt: any) {
+
+    let password = prompt("Please enter the password:", "");
+    this.http.get<Object>('https://api.hashify.net/hash/md5/hex?value=' + password)
+      .subscribe((data: any) => {
+        if (data.Digest != "84892b91ef3bf9d216bbc6e88d74a77c") {
+          alert("Wrong password!")
+        }
+        else {
+          if (evt["ind"].status) {
+            evt["ind"].status = false;
+          }
+          else
+            evt["ind"].status = true;
+        
+          this.http.put<Object>(`https://272.selfip.net/apps/DHt1XR53QT/collections/reports/documents/${evt["ind"].id}`,
+            { "key": evt["ind"].id, "data": evt["ind"] })
+            .subscribe((data: any) => {
+              console.log("updated")
+            })
+        }
+    })
+  }
+
+  onCreate() {
+    this.router.navigate(['/add'])
   }
 }

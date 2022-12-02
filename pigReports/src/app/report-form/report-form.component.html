@@ -7,19 +7,68 @@
 </form> -->
 
 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
-    <input name="name" type="text" placeholder="NAME" formControlName="name"> <br>
+    Name: <input name="name" type="text" placeholder="Name" formControlName="name">
+    
+    <span *ngIf="name!.invalid && (name!.dirty || name!.touched) || check" class="text-danger">
+        <span *ngIf="name!.errors?.['required']">
+            *Name is required.
+        </span>
+    </span>    
+    <br>
 
-    <input name="phoneNum" type="number" placeholder="Phone Number" formControlName="phoneNum"> <br>
+    Phone Number: <input name="phoneNum" type="number" placeholder="Phone Number" formControlName="phoneNum"> 
+    <span *ngIf="phoneNum!.invalid &&(phoneNum!.dirty || phoneNum!.touched) || check" class="text-danger">
+        <span *ngIf="phoneNum!.errors?.['required']">
+            *Phone number is required.
+        </span>
+        <!-- <span *ngIf="phoneNum!.errors?.['pattern']">
 
-    <input name="pid" type="text" placeholder="Pid" formControlName="Pid"> <br>
+        </span> -->
+    </span><br>
 
-    <input name="breed" type="text" placeholder="Breed" formControlName="breed"> <br>
+    <input name="pid" type="text" placeholder="Pid" formControlName="Pid">
+    <span *ngIf="Pid!.invalid &&(Pid!.dirty || Pid!.touched) || check" class="text-danger">
+        <span *ngIf="Pid!.errors?.['required']">
+            *Pid is required.
+        </span>
+    </span> <br>
 
-    <input name="location" type="text" placeholder="Location" formControlName="location"> <br>
+    <input name="breed" type="text" placeholder="Breed" formControlName="breed">
+    <span *ngIf="breed!.invalid &&(breed!.dirty || breed!.touched) || check" class="text-danger">
+        <span *ngIf="breed!.errors?.['required']">
+            *Breed is required.
+        </span>
+    </span> <br>
 
-    <input name="longitude" type="number" placeholder="Longitude" formControlName="longitude"> <br>
+    <label for="cars">Choose a location:</label> <br>
+    <select name="location" id="location" formControlName="location" (ngModelChange)="mySelectHandler($event)">
+        <option *ngFor="let location of locations" [ngValue]="location">{{location}}</option>
+        <option value="Enter a location:">Other</option>
+    </select> <br>
 
-    <input name="latitude" type="number" placeholder="Latitude" formControlName="latitude"> <br>
+    <div *ngIf="locationName">
+        <input placeholder="Enter a location:" formControlName="location">
+        <span *ngIf="location!.invalid &&(location!.dirty || location!.touched) || check" class="text-danger">
+            <span *ngIf="location!.errors?.['required']">
+                *Location is required.
+            </span>
+        </span>
+    </div>
+    
+
+    <input name="longitude" type="number" placeholder="Longitude" formControlName="longitude">
+    <span *ngIf="longitude!.invalid &&(longitude!.dirty || longitude!.touched) || check" class="text-danger">
+        <span *ngIf="longitude!.errors?.['required']">
+            *Longitude is required.
+        </span>
+    </span> <br>
+
+    <input name="latitude" type="number" placeholder="Latitude" formControlName="latitude">
+    <span *ngIf="latitude!.invalid &&(latitude!.dirty || latitude!.touched) || check" class="text-danger">
+        <span *ngIf="latitude!.errors?.['required']">
+            *Latitude is required.
+        </span>
+    </span> <br>
 
     <input name="extraNote" type="text" placeholder="Extra notes" formControlName="extraNote"> <br>
     

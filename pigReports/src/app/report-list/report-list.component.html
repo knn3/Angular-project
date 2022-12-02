@@ -1,6 +1,7 @@
 <app-report-display 
     [reports]="reports"
     (delete) = "onReportDelete($event)"
+    (update) = "onReportUpdate($event)"
 ></app-report-display>
 
-<a href="/add">ADD</a>
+<button (click)="onCreate()" class="btn btn-primary">CREATE PIG REPORT</button>
