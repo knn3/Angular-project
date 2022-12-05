@@ -10,9 +10,11 @@ import { Router } from '@angular/router';
 })
 export class ReportListComponent implements OnInit {
   reports: any[];
+  locations: any[];
 
   constructor(private http: HttpClient, private router: Router) {
     this.reports = []
+    this.locations = []
    }
   
   ngOnInit(): void {
@@ -23,6 +25,14 @@ export class ReportListComponent implements OnInit {
         this.reports = []
         for (let i = 0; i < data.length; i++){
           this.reports.push(data[i].data)
+          if (this.locations.indexOf(data[i].data.location) === -1) {
+            this.locations.push(
+              {
+                location: data[i].data.location,
+                longitude: data[i].data.longitude,
+                latitude: data[i].data.latitude
+              })
+          }
         }
     })
   }
@@ -39,7 +49,8 @@ export class ReportListComponent implements OnInit {
             .subscribe((data: any) => {
               this.ngOnInit();
               console.log("delete successfull")
-          })
+              window.location.reload()              
+            })          
         }
     })
   }

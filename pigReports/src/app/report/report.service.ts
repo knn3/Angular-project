@@ -12,7 +12,7 @@ export class Report {
   location: string = "";
   longitude: number= 0;
   latitude: number= 0;
-  extraNotes: string ="";
+  extraNote: string ="";
   date: number= 0;
   time: number= 0;
   status: boolean = false;

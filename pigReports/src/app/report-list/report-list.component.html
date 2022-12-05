@@ -1,7 +1,14 @@
+<app-report-map
+
+    [locations]="locations"
+></app-report-map>
+
 <app-report-display 
     [reports]="reports"
     (delete) = "onReportDelete($event)"
     (update) = "onReportUpdate($event)"
 ></app-report-display>
 
-<button (click)="onCreate()" class="btn btn-primary">CREATE PIG REPORT</button>
+<div class="d-grid gap-2">
+    <button (click)="onCreate()" class="btn btn-primary">CREATE PIG REPORT</button>
+</div>

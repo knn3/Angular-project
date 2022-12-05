@@ -36,12 +36,14 @@ export class ReportDisplayComponent implements OnInit {
    }
 
   ngOnInit(): void {
+
   }
 
   onDelete(evt:any,ind:any){
-    console.log(ind)
     evt["ind"] = ind
     this.delete.emit(evt)
+    console.log(this.reports)
+
   }
 
   onMoreInfo(evt: any, report: any) {

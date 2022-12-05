@@ -14,6 +14,7 @@ export class ReportFormComponent implements OnInit {
   form: FormGroup;
   allReports: any[];
   locations: string[];
+  coordinates: any[];
 
   constructor(private http: HttpClient, private router: Router) { 
     let formControl = {
@@ -48,6 +49,7 @@ export class ReportFormComponent implements OnInit {
     }
     this.allReports = [];
     this.locations = []
+    this.coordinates = []
     this.form = new FormGroup(formControl)
   }
 
@@ -59,6 +61,10 @@ export class ReportFormComponent implements OnInit {
           this.allReports.push(data[i].data)
           if (this.locations.indexOf(data[i].data.location) === -1) {
             this.locations.push(data[i].data.location)
+            this.coordinates.push({
+              longitude: data[i].data.longitude,
+              latitude: data[i].data.latitude
+            })
           }
         }
     })
@@ -72,6 +78,7 @@ export class ReportFormComponent implements OnInit {
     else {
       this.form.value.date = new Date().getTime();
       this.form.value.time = new Date().getTime();
+
       if (!this.allReports.length) {
         this.form.value.id = 0
       }
@@ -112,3 +119,4 @@ export class ReportFormComponent implements OnInit {
 }
 
 
+// on click on some option, take that index and change with coors correspond 

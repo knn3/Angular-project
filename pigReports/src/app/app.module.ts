@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RoutingModule } from './routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReportInfoComponent } from './report-info/report-info.component';
+import { ReportMapComponent } from './report-map/report-map.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ReportInfoComponent } from './report-info/report-info.component';
     ReportFormComponent,
     ReportDisplayComponent,
     ReportInfoComponent,
+    ReportMapComponent
   ],
   imports: [
     BrowserModule,

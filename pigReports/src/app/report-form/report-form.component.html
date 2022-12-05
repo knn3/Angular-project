@@ -26,21 +26,21 @@
         </span> -->
     </span><br>
 
-    <input name="pid" type="text" placeholder="Pid" formControlName="Pid">
+    Pid: <input name="pid" type="text" placeholder="Pid" formControlName="Pid">
     <span *ngIf="Pid!.invalid &&(Pid!.dirty || Pid!.touched) || check" class="text-danger">
         <span *ngIf="Pid!.errors?.['required']">
             *Pid is required.
         </span>
     </span> <br>
 
-    <input name="breed" type="text" placeholder="Breed" formControlName="breed">
+    Breed: <input name="breed" type="text" placeholder="Breed" formControlName="breed">
     <span *ngIf="breed!.invalid &&(breed!.dirty || breed!.touched) || check" class="text-danger">
         <span *ngIf="breed!.errors?.['required']">
             *Breed is required.
         </span>
     </span> <br>
 
-    <label for="cars">Choose a location:</label> <br>
+    <label for="locations">Choose a location:</label> <br>
     <select name="location" id="location" formControlName="location" (ngModelChange)="mySelectHandler($event)">
         <option *ngFor="let location of locations" [ngValue]="location">{{location}}</option>
         <option value="Enter a location:">Other</option>
@@ -56,21 +56,21 @@
     </div>
     
 
-    <input name="longitude" type="number" placeholder="Longitude" formControlName="longitude">
+    Longitude: <input name="longitude" type="number" placeholder="Longitude" formControlName="longitude">
     <span *ngIf="longitude!.invalid &&(longitude!.dirty || longitude!.touched) || check" class="text-danger">
         <span *ngIf="longitude!.errors?.['required']">
             *Longitude is required.
         </span>
     </span> <br>
 
-    <input name="latitude" type="number" placeholder="Latitude" formControlName="latitude">
+    Latitude: <input name="latitude" type="number" placeholder="Latitude" formControlName="latitude">
     <span *ngIf="latitude!.invalid &&(latitude!.dirty || latitude!.touched) || check" class="text-danger">
         <span *ngIf="latitude!.errors?.['required']">
             *Latitude is required.
         </span>
     </span> <br>
 
-    <input name="extraNote" type="text" placeholder="Extra notes" formControlName="extraNote"> <br>
+    Extra notes: <input name="extraNote" type="text" placeholder="Extra notes" formControlName="extraNote"> <br>
     
     <button>SAVE</button>
 </form>

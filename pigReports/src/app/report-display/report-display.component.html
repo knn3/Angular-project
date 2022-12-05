@@ -1,4 +1,4 @@
-<table>
+<table class="table ">
     <tr>
         <th scope="col"><a href="#" (click)="onLocationSort($event)">Location</a></th>
         <th scope="col"><a href="#" (click)="onNameSort($event)">Reported By</a></th>
@@ -20,12 +20,12 @@
             class="btn btn-info"
         >More Info</button></td>
         <td>
-            <button (click)="onChangeStatus($event,report)" class="btn btn-success">Change Status</button>
+            <button (click)="onChangeStatus($event,report)" class="btn btn-success text-dark">Change Status</button>
         </td>
         <td><button 
             id="delete"
             (click)="onDelete($event,report)"
-            class="btn btn-danger"
+            class="btn btn-danger text-dark"
         >X</button></td>
     </tr>
 </table>
