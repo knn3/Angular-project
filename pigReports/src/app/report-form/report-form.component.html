@@ -6,72 +6,96 @@
     </fieldset>
 </form> -->
 
-<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
-    Name: <input name="name" type="text" placeholder="Name" formControlName="name">
-    
-    <span *ngIf="name!.invalid && (name!.dirty || name!.touched) || check" class="text-danger">
-        <span *ngIf="name!.errors?.['required']">
-            *Name is required.
-        </span>
-    </span>    
-    <br>
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" >
 
-    Phone Number: <input name="phoneNum" type="number" placeholder="Phone Number" formControlName="phoneNum"> 
-    <span *ngIf="phoneNum!.invalid &&(phoneNum!.dirty || phoneNum!.touched) || check" class="text-danger">
-        <span *ngIf="phoneNum!.errors?.['required']">
-            *Phone number is required.
-        </span>
-        <!-- <span *ngIf="phoneNum!.errors?.['pattern']">
-
-        </span> -->
-    </span><br>
-
-    Pid: <input name="pid" type="text" placeholder="Pid" formControlName="Pid">
-    <span *ngIf="Pid!.invalid &&(Pid!.dirty || Pid!.touched) || check" class="text-danger">
-        <span *ngIf="Pid!.errors?.['required']">
-            *Pid is required.
-        </span>
-    </span> <br>
-
-    Breed: <input name="breed" type="text" placeholder="Breed" formControlName="breed">
-    <span *ngIf="breed!.invalid &&(breed!.dirty || breed!.touched) || check" class="text-danger">
-        <span *ngIf="breed!.errors?.['required']">
-            *Breed is required.
-        </span>
-    </span> <br>
-
-    <label for="locations">Choose a location:</label> <br>
-    <select name="location" id="location" formControlName="location" (ngModelChange)="mySelectHandler($event)">
-        <option *ngFor="let location of locations" [ngValue]="location">{{location}}</option>
-        <option value="Enter a location:">Other</option>
-    </select> <br>
-
-    <div *ngIf="locationName">
-        <input placeholder="Enter a location:" formControlName="location">
-        <span *ngIf="location!.invalid &&(location!.dirty || location!.touched) || check" class="text-danger">
-            <span *ngIf="location!.errors?.['required']">
-                *Location is required.
+    <div class="form-group">
+        <label for="">Name</label>
+        <input class="form-control" name="name" type="text" placeholder="Name" formControlName="name">
+        <span *ngIf="name!.invalid && (name!.dirty || name!.touched) || check" class="text-danger">
+            <span *ngIf="name!.errors?.['required']">
+                *Name is required.
             </span>
         </span>
+        <br>
+    </div>
+    
+    
+    <div class="form-group">
+        <label for="">Phone Number</label>
+        <input class="form-control" name="phoneNum" type="number" placeholder="Phone Number" formControlName="phoneNum"> 
+        <span *ngIf="phoneNum!.invalid &&(phoneNum!.dirty || phoneNum!.touched) || check" class="text-danger">
+            <span *ngIf="phoneNum!.errors?.['required']">
+                *Phone number is required.
+            </span>
+        </span><br>
+    </div>
+
+    <div class="form-group">
+        <label for="">Pid</label>
+        <input class="form-control" name="pid" type="number" placeholder="Pid" formControlName="Pid">
+        <span *ngIf="Pid!.invalid &&(Pid!.dirty || Pid!.touched) || check" class="text-danger">
+            <span *ngIf="Pid!.errors?.['required']">
+                *Pid is required.
+            </span>
+        </span> <br>
+    </div>
+
+    <div class="form-group">
+        <label for="">Breed</label>
+        <input  class="form-control" name="breed" type="text" placeholder="Breed" formControlName="breed">
+        <span *ngIf="breed!.invalid &&(breed!.dirty || breed!.touched) || check" class="text-danger">
+            <span *ngIf="breed!.errors?.['required']">
+                *Breed is required.
+            </span>
+        </span> <br>
+    </div>
+
+    <div class="form-group">
+        <label for="location">Choose a location:</label> <br>
+        <select class="form-control" name="location" id="location" formControlName="location" (ngModelChange)="mySelectHandler($event)">
+            <option *ngFor="let location of locations" [ngValue]="location">{{location}}</option>
+            <option value="Enter a location:">Other</option>
+        </select> <br>
+    
+
+        <div *ngIf="locationName">
+            <input class="form-control" placeholder="Enter a location:" formControlName="location">
+            <span *ngIf="location!.invalid &&(location!.dirty || location!.touched) || check" class="text-danger">
+                <span *ngIf="location!.errors?.['required']">
+                    *Location is required.
+                </span>
+            </span>
+        </div>
+        <br>
     </div>
     
 
-    Longitude: <input name="longitude" type="number" placeholder="Longitude" formControlName="longitude">
-    <span *ngIf="longitude!.invalid &&(longitude!.dirty || longitude!.touched) || check" class="text-danger">
-        <span *ngIf="longitude!.errors?.['required']">
-            *Longitude is required.
-        </span>
-    </span> <br>
+    <div class="form-group">
+        <label for="">Longitude</label>
+        <input  class="form-control" name="longitude" type="number" placeholder="Longitude" formControlName="longitude">
+        <span *ngIf="longitude!.invalid &&(longitude!.dirty || longitude!.touched) || check" class="text-danger">
+            <span *ngIf="longitude!.errors?.['required']">
+                *Longitude is required.
+            </span>
+        </span> <br>
+    </div>
 
-    Latitude: <input name="latitude" type="number" placeholder="Latitude" formControlName="latitude">
-    <span *ngIf="latitude!.invalid &&(latitude!.dirty || latitude!.touched) || check" class="text-danger">
-        <span *ngIf="latitude!.errors?.['required']">
-            *Latitude is required.
-        </span>
-    </span> <br>
+    <div class="form-group">
+        <label for="">Latitude</label>
+        <input  class="form-control" name="latitude" type="number" placeholder="Latitude" formControlName="latitude">
+        <span *ngIf="latitude!.invalid &&(latitude!.dirty || latitude!.touched) || check" class="text-danger">
+            <span *ngIf="latitude!.errors?.['required']">
+                *Latitude is required.
+            </span>
+        </span> <br>
+    </div>
 
-    Extra notes: <input name="extraNote" type="text" placeholder="Extra notes" formControlName="extraNote"> <br>
-    
-    <button>SAVE</button>
+    <div class="form-group">
+        <label for="">Extra notes</label>
+        <input  class="form-control" name="extraNote" type="text" placeholder="Extra notes" formControlName="extraNote"> <br>
+    </div>
+    <div class="d-grid gap-2">
+        <button class="btn btn-primary">SAVE</button>
+    </div>
 </form>
 
